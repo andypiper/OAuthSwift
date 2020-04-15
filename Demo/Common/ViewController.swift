@@ -267,8 +267,9 @@ extension ViewController {
         )
         self.oauthswift = oauthswift
         oauthswift.authorizeURLHandler = getURLHandler()
+        oauthswift.addCallbackURLToAuthorizeURL = true
         let _ = oauthswift.authorize(
-        withCallbackURL: URL(string: "http://oauthswift.herokuapp.com/callback/twitter")!) { result in
+        withCallbackURL: URL(string: "oauth-swift://oauth-callback/twitter")!) { result in
             switch result {
             case .success(let (credential, _, _)):
                 self.showTokenAlert(name: serviceParameters["name"], credential: credential)
